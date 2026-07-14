@@ -17,7 +17,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import name.modid.EchoingVoid;
 
 public class ModBlocks {
-	public static final Block VOID_STONE = register("void_stone", VoidStoneBlock::new);
+	public static final Block VOID_STONE = register("void_stone",
+		properties -> new VoidStoneBlock(properties.strength(50.0f, 1200.0f).requiresCorrectToolForDrops()));
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory) {
 		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, EchoingVoid.id(name));
