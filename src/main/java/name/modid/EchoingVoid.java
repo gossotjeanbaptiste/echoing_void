@@ -7,6 +7,8 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import name.modid.blocks.ModBlocks;
+
 public class EchoingVoid implements ModInitializer {
 	public static final String MOD_ID = "echoing-void";
 
@@ -22,6 +24,8 @@ public class EchoingVoid implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
+
+		ModBlocks.init();
 	}
 
 	public static Identifier id(String path) {
