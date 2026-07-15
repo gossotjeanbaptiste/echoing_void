@@ -1,3 +1,4 @@
 {
-	"block.echoing_void.void_stone": "Pierre du Vide"
+	"block.echoing_void.void_stone": "Pierre du Vide",
+	"entity.echoing_void.watchling": "Veilleur"
 }

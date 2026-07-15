@@ -1,0 +1,54 @@
+{
+	"watchling.idle": {
+		"sounds": [
+			"echoing_void:watchling/idle1",
+			"echoing_void:watchling/idle2",
+			"echoing_void:watchling/idle3"
+		]
+	},
+	"watchling.hurt": {
+		"sounds": [
+			"echoing_void:watchling/hurt1",
+			"echoing_void:watchling/hurt2"
+		]
+	},
+	"watchling.death": {
+		"sounds": [
+			"echoing_void:watchling/death1",
+			"echoing_void:watchling/death2",
+			"echoing_void:watchling/death3"
+		]
+	},
+	"watchling.attack": {
+		"sounds": [
+			"echoing_void:watchling/attack1",
+			"echoing_void:watchling/attack2",
+			"echoing_void:watchling/attack3",
+			"echoing_void:watchling/attack4",
+			"echoing_void:watchling/attack5"
+		]
+	},
+	"watchling.heavy_attack": {
+		"sounds": [
+			"echoing_void:watchling/heavy_attack1",
+			"echoing_void:watchling/heavy_attack2"
+		]
+	},
+	"watchling.stun": {
+		"sounds": [
+			"echoing_void:watchling/stun1",
+			"echoing_void:watchling/stun2",
+			"echoing_void:watchling/stun3"
+		]
+	},
+	"watchling.teleport_start": {
+		"sounds": [
+			"echoing_void:watchling/teleport1"
+		]
+	},
+	"watchling.teleport_end": {
+		"sounds": [
+			"echoing_void:watchling/teleport2"
+		]
+	}
+}

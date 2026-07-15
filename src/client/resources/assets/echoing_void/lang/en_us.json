@@ -1,3 +1,4 @@
 {
-	"block.echoing_void.void_stone": "Void Stone"
+	"block.echoing_void.void_stone": "Void Stone",
+	"entity.echoing_void.watchling": "Watchling"
 }

@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import name.modid.blocks.ModBlocks;
+import name.modid.entity.ModEntities;
+import name.modid.entity.WatchlingSpawner;
+import name.modid.sound.ModSounds;
 
 public class EchoingVoid implements ModInitializer {
 	public static final String MOD_ID = "echoing_void";
@@ -25,7 +28,10 @@ public class EchoingVoid implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 
+		ModSounds.init();
 		ModBlocks.init();
+		ModEntities.init();
+		WatchlingSpawner.init();
 	}
 
 	public static Identifier id(String path) {
