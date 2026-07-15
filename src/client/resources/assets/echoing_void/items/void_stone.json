@@ -1,6 +1,6 @@
 {
 	"model": {
 		"type": "minecraft:model",
-		"model": "echoing-void:block/void_stone"
+		"model": "echoing_void:block/void_stone"
 	}
 }

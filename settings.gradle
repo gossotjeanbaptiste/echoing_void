@@ -10,4 +10,4 @@ pluginManagement {
 }
 
 // Should match your modid
-rootProject.name = 'echoing-void'
+rootProject.name = 'echoing_void'

@@ -11,11 +11,11 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "echoing-void:void_stone"
+					"name": "echoing_void:void_stone"
 				}
 			],
 			"rolls": 1.0
 		}
 	],
-	"random_sequence": "echoing-void:blocks/void_stone"
+	"random_sequence": "echoing_void:blocks/void_stone"
 }

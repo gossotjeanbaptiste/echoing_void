@@ -22,7 +22,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"echoing-void" {
+		"echoing_void" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
