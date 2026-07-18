@@ -66,8 +66,8 @@ public class WatchlingEntity extends Monster {
 		return Monster.createMonsterAttributes()
 			.add(Attributes.MAX_HEALTH, 30.0)
 			.add(Attributes.MOVEMENT_SPEED, 0.3)
-			.add(Attributes.ATTACK_DAMAGE, 6.0)
-			.add(Attributes.FOLLOW_RANGE, 32.0)
+			.add(Attributes.ATTACK_DAMAGE, 4.0)
+			.add(Attributes.FOLLOW_RANGE, 16.0)
 			.add(Attributes.ARMOR, 0.0);
 	}
 
@@ -76,12 +76,13 @@ public class WatchlingEntity extends Monster {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new TeleportToTargetGoal(this));
 		this.goalSelector.addGoal(2, new AttackGoal(this));
+		this.goalSelector.addGoal(3, new StareGoal(this));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
 		this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 5, true, false, null));
 	}
 
 	@Override
@@ -268,6 +269,68 @@ public class WatchlingEntity extends Monster {
 				this.watchling.performAttack(target, heavy);
 				this.attackCooldown = heavy ? 40 : 20;
 			}
+		}
+	}
+
+	/**
+	 * Between 16 and 32 blocks (i.e. beyond the follow range so it never becomes an actual combat
+	 * target), a Watchling that can directly see a player freezes in place and stares them down.
+	 */
+	private static class StareGoal extends Goal {
+		private static final double MIN_RANGE = 16.0;
+		private static final double MAX_RANGE = 32.0;
+
+		private final WatchlingEntity watchling;
+		private Player watchedPlayer;
+
+		StareGoal(WatchlingEntity watchling) {
+			this.watchling = watchling;
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+		}
+
+		@Override
+		public boolean canUse() {
+			if (this.watchling.getTarget() != null) {
+				return false;
+			}
+			Player player = this.watchling.level().getNearestPlayer(this.watchling, MAX_RANGE);
+			if (player == null || !player.isAlive() || player.isSpectator()) {
+				return false;
+			}
+			double distanceSqr = this.watchling.distanceToSqr(player);
+			if (distanceSqr < MIN_RANGE * MIN_RANGE || distanceSqr > MAX_RANGE * MAX_RANGE) {
+				return false;
+			}
+			if (!this.watchling.hasLineOfSight(player)) {
+				return false;
+			}
+			this.watchedPlayer = player;
+			return true;
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			if (this.watchling.getTarget() != null || this.watchedPlayer == null || !this.watchedPlayer.isAlive()) {
+				return false;
+			}
+			double distanceSqr = this.watchling.distanceToSqr(this.watchedPlayer);
+			return distanceSqr >= MIN_RANGE * MIN_RANGE && distanceSqr <= MAX_RANGE * MAX_RANGE
+				&& this.watchling.hasLineOfSight(this.watchedPlayer);
+		}
+
+		@Override
+		public void start() {
+			this.watchling.getNavigation().stop();
+		}
+
+		@Override
+		public void stop() {
+			this.watchedPlayer = null;
+		}
+
+		@Override
+		public void tick() {
+			this.watchling.getLookControl().setLookAt(this.watchedPlayer, 30.0F, 30.0F);
 		}
 	}
 }
