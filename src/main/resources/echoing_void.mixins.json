@@ -5,7 +5,8 @@
 	"mixins": [
 		"ExampleMixin",
 		"LivingEntityMixin",
-		"BrewingStandIngredientsSlotMixin"
+		"BrewingStandIngredientsSlotMixin",
+		"EndCityPiecesMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

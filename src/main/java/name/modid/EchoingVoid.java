@@ -14,6 +14,7 @@ import name.modid.entity.ModEntities;
 import name.modid.entity.WatchlingSpawner;
 import name.modid.item.ModItems;
 import name.modid.sound.ModSounds;
+import name.modid.worldgen.ModStructureProcessors;
 
 public class EchoingVoid implements ModInitializer {
 	public static final String MOD_ID = "echoing_void";
@@ -36,6 +37,7 @@ public class EchoingVoid implements ModInitializer {
 		ModItems.init();
 		ModBlocks.init();
 		ModBlockEntities.init();
+		ModStructureProcessors.init();
 		ModEntities.init();
 		WatchlingSpawner.init();
 	}
