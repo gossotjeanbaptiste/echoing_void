@@ -28,6 +28,25 @@ public class WatchlingRenderer extends HumanoidMobRenderer<WatchlingEntity, Watc
 	}
 
 	@Override
+	public void extractRenderState(WatchlingEntity entity, WatchlingRenderState state, float partialTick) {
+		super.extractRenderState(entity, state, partialTick);
+		// Watchlings blink more often than other mobs, given how many eyes they have.
+		// Stagger the cycle per-entity so a whole group doesn't blink in lockstep, and step
+		// through half-closed -> closed -> half-closed instead of a hard on/off cut.
+		int cycle = 90;
+		int phase = (entity.tickCount + entity.getId() * 37) % cycle;
+		if (phase < 2) {
+			state.blinkStage = 1;
+		} else if (phase < 4) {
+			state.blinkStage = 2;
+		} else if (phase < 6) {
+			state.blinkStage = 1;
+		} else {
+			state.blinkStage = 0;
+		}
+	}
+
+	@Override
 	public Identifier getTextureLocation(WatchlingRenderState state) {
 		return TEXTURE;
 	}

@@ -93,6 +93,13 @@ public class WatchlingEntity extends Monster {
 	}
 
 	@Override
+	public int getAmbientSoundInterval() {
+		// Vanilla default (80) gives an average ~6s gap; this chatters more often, fitting a
+		// creature covered in restless eyes.
+		return 25;
+	}
+
+	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return ModSounds.WATCHLING_HURT;
 	}
