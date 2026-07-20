@@ -59,6 +59,26 @@ public class WatchlingEntity extends Monster {
 	}
 
 	@Override
+	public void aiStep() {
+		// Same constant ambient portal-particle trail as vanilla EnderMan, whether idle or moving.
+		if (this.level().isClientSide()) {
+			for (int i = 0; i < 2; i++) {
+				this.level()
+					.addParticle(
+						ParticleTypes.PORTAL,
+						this.getRandomX(0.5),
+						this.getRandomY() - 0.25,
+						this.getRandomZ(0.5),
+						(this.random.nextDouble() - 0.5) * 2.0,
+						-this.random.nextDouble(),
+						(this.random.nextDouble() - 0.5) * 2.0
+					);
+			}
+		}
+		super.aiStep();
+	}
+
+	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		super.defineSynchedData(builder);
 		builder.define(DATA_TELEPORT_HIDDEN, false);
