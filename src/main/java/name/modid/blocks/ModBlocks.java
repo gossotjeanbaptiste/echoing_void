@@ -13,12 +13,16 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 
 import name.modid.EchoingVoid;
+import name.modid.block.EndBrewingStandBlock;
 
 public class ModBlocks {
 	public static final Block VOID_STONE = register("void_stone",
 		properties -> new VoidStoneBlock(properties.strength(50.0f, 1200.0f).requiresCorrectToolForDrops()));
+	public static final Block END_BREWING_STAND = register("end_brewing_stand",
+		properties -> new EndBrewingStandBlock(properties.mapColor(MapColor.METAL).strength(0.5F).lightLevel(state -> 1).noOcclusion()));
 
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory) {
 		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, EchoingVoid.id(name));
@@ -33,5 +37,7 @@ public class ModBlocks {
 	public static void init() {
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS)
 			.register(output -> output.accept(VOID_STONE));
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+			.register(output -> output.accept(END_BREWING_STAND));
 	}
 }

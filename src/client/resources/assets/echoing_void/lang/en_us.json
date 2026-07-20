@@ -1,6 +1,8 @@
 {
 	"block.echoing_void.void_stone": "Void Stone",
+	"block.echoing_void.end_brewing_stand": "End Brewing Stand",
 	"entity.echoing_void.watchling": "Watchling",
 	"effect.echoing_void.void_poisoned": "Void Poisoned",
-	"item.echoing_void.void_poisoned_potion": "Void Poisoned Potion"
+	"item.echoing_void.void_poisoned_potion": "Void Poisoned Potion",
+	"container.echoing_void.end_brewing_stand": "End Brewing Stand"
 }

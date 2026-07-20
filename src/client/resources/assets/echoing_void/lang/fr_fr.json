@@ -1,6 +1,8 @@
 {
 	"block.echoing_void.void_stone": "Pierre du Vide",
+	"block.echoing_void.end_brewing_stand": "Alambic de l'End",
 	"entity.echoing_void.watchling": "Scrutature",
 	"effect.echoing_void.void_poisoned": "Poison du Vide",
-	"item.echoing_void.void_poisoned_potion": "Potion de Poison du Vide"
+	"item.echoing_void.void_poisoned_potion": "Potion de Poison du Vide",
+	"container.echoing_void.end_brewing_stand": "Alambic de l'End"
 }

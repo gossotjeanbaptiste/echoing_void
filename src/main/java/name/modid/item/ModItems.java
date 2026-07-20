@@ -29,6 +29,7 @@ public class ModItems {
 
 	private static Consumable voidPoisonedConsumable() {
 		return Consumables.defaultDrink()
+			.hasConsumeParticles(false)
 			.onConsume(new ApplyStatusEffectsConsumeEffect(
 				new MobEffectInstance(ModMobEffects.VOID_POISONED, ModMobEffects.VOID_POISONED_DEFAULT_DURATION_TICKS)))
 			.build();

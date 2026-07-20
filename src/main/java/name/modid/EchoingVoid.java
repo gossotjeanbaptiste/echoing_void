@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import name.modid.block.entity.ModBlockEntities;
 import name.modid.blocks.ModBlocks;
 import name.modid.effect.ModMobEffects;
 import name.modid.entity.ModEntities;
@@ -34,6 +35,7 @@ public class EchoingVoid implements ModInitializer {
 		ModMobEffects.init();
 		ModItems.init();
 		ModBlocks.init();
+		ModBlockEntities.init();
 		ModEntities.init();
 		WatchlingSpawner.init();
 	}
