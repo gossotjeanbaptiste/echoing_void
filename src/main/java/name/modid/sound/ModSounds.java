@@ -17,6 +17,8 @@ public class ModSounds {
 	public static final SoundEvent WATCHLING_STUN = register("watchling.stun");
 	public static final SoundEvent WATCHLING_TELEPORT_START = register("watchling.teleport_start");
 	public static final SoundEvent WATCHLING_TELEPORT_END = register("watchling.teleport_end");
+	public static final SoundEvent VOID_POISONED_ACTIVATE = register("void_poisoned.activate");
+	public static final SoundEvent VOID_POISONED_DEACTIVATE = register("void_poisoned.deactivate");
 
 	private static SoundEvent register(String name) {
 		ResourceKey<SoundEvent> key = ResourceKey.create(Registries.SOUND_EVENT, EchoingVoid.id(name));

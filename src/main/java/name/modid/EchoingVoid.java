@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import name.modid.blocks.ModBlocks;
+import name.modid.effect.ModMobEffects;
 import name.modid.entity.ModEntities;
 import name.modid.entity.WatchlingSpawner;
+import name.modid.item.ModItems;
 import name.modid.sound.ModSounds;
 
 public class EchoingVoid implements ModInitializer {
@@ -29,6 +31,8 @@ public class EchoingVoid implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		ModSounds.init();
+		ModMobEffects.init();
+		ModItems.init();
 		ModBlocks.init();
 		ModEntities.init();
 		WatchlingSpawner.init();

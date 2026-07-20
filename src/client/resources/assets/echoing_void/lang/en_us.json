@@ -1,4 +1,6 @@
 {
 	"block.echoing_void.void_stone": "Void Stone",
-	"entity.echoing_void.watchling": "Watchling"
+	"entity.echoing_void.watchling": "Watchling",
+	"effect.echoing_void.void_poisoned": "Void Poisoned",
+	"item.echoing_void.void_poisoned_potion": "Void Poisoned Potion"
 }

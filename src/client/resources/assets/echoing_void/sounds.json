@@ -50,5 +50,22 @@
 		"sounds": [
 			"echoing_void:watchling/teleport2"
 		]
+	},
+	"void_poisoned.activate": {
+		"sounds": [
+			"echoing_void:void_poisoned/activate1",
+			"echoing_void:void_poisoned/activate2",
+			"echoing_void:void_poisoned/activate3",
+			"echoing_void:void_poisoned/activate4",
+			"echoing_void:void_poisoned/activate5"
+		]
+	},
+	"void_poisoned.deactivate": {
+		"sounds": [
+			"echoing_void:void_poisoned/deactivate1",
+			"echoing_void:void_poisoned/deactivate2",
+			"echoing_void:void_poisoned/deactivate3",
+			"echoing_void:void_poisoned/deactivate4"
+		]
 	}
 }

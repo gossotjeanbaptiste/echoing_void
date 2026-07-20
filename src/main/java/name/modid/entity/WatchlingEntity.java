@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -28,6 +29,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import name.modid.effect.ModMobEffects;
 import name.modid.sound.ModSounds;
 
 public class WatchlingEntity extends Monster {
@@ -147,6 +149,9 @@ public class WatchlingEntity extends Monster {
 		float base = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
 		float damage = heavy ? base * HEAVY_ATTACK_MULTIPLIER : base;
 		target.hurtServer(serverLevel, this.level().damageSources().mobAttack(this), damage);
+		if (heavy) {
+			target.addEffect(new MobEffectInstance(ModMobEffects.VOID_POISONED, ModMobEffects.VOID_POISONED_DEFAULT_DURATION_TICKS), this);
+		}
 	}
 
 	private boolean teleportTowards(LivingEntity target) {
