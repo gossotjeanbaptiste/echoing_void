@@ -2,7 +2,10 @@
 	"block.echoing_void.void_stone": "Void Stone",
 	"block.echoing_void.end_brewing_stand": "End Brewing Stand",
 	"entity.echoing_void.watchling": "Watchling",
+	"entity.echoing_void.blastling": "Blastling",
 	"effect.echoing_void.void_poisoned": "Void Poisoned",
 	"item.echoing_void.void_poisoned_potion": "Void Poisoned Potion",
+	"item.echoing_void.watchling_spawn_egg": "Watchling Spawn Egg",
+	"item.echoing_void.blastling_spawn_egg": "Blastling Spawn Egg",
 	"container.echoing_void.end_brewing_stand": "End Brewing Stand"
 }

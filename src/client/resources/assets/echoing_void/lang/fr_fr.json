@@ -2,7 +2,10 @@
 	"block.echoing_void.void_stone": "Pierre du Vide",
 	"block.echoing_void.end_brewing_stand": "Alambic de l'End",
 	"entity.echoing_void.watchling": "Scrutature",
+	"entity.echoing_void.blastling": "Explosature",
 	"effect.echoing_void.void_poisoned": "Poison du Vide",
 	"item.echoing_void.void_poisoned_potion": "Potion de Poison du Vide",
+	"item.echoing_void.watchling_spawn_egg": "Œuf d'invocation de Scrutature",
+	"item.echoing_void.blastling_spawn_egg": "Œuf d'invocation d'Explosature",
 	"container.echoing_void.end_brewing_stand": "Alambic de l'End"
 }

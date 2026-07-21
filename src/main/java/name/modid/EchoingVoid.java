@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import name.modid.block.entity.ModBlockEntities;
 import name.modid.blocks.ModBlocks;
 import name.modid.effect.ModMobEffects;
+import name.modid.entity.BlastlingSpawner;
 import name.modid.entity.ModEntities;
 import name.modid.entity.WatchlingSpawner;
 import name.modid.item.ModItems;
@@ -40,6 +41,7 @@ public class EchoingVoid implements ModInitializer {
 		ModStructureProcessors.init();
 		ModEntities.init();
 		WatchlingSpawner.init();
+		BlastlingSpawner.init();
 	}
 
 	public static Identifier id(String path) {

@@ -12,8 +12,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import name.modid.EchoingVoid;
 
 public class WatchlingEyesLayer extends EyesLayer<WatchlingRenderState, WatchlingModel> {
-	private static final RenderType EYES_OPEN = RenderTypes.eyes(EchoingVoid.id("textures/mob/watchling_eyes.png"));
-	private static final RenderType EYES_HALF = RenderTypes.eyes(EchoingVoid.id("textures/mob/watchling_eyes_half.png"));
+	private static final RenderType EYES_OPEN = RenderTypes.eyes(EchoingVoid.id("textures/mob/watchling/watchling_eyes.png"));
+	private static final RenderType EYES_HALF = RenderTypes.eyes(EchoingVoid.id("textures/mob/watchling/watchling_eyes_half.png"));
 
 	public WatchlingEyesLayer(RenderLayerParent<WatchlingRenderState, WatchlingModel> parent) {
 		super(parent);

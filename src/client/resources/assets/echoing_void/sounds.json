@@ -67,5 +67,59 @@
 			"echoing_void:void_poisoned/deactivate3",
 			"echoing_void:void_poisoned/deactivate4"
 		]
+	},
+	"blastling.idle": {
+		"sounds": [
+			"echoing_void:blastling/idle1",
+			"echoing_void:blastling/idle2",
+			"echoing_void:blastling/idle3",
+			"echoing_void:blastling/idle4"
+		]
+	},
+	"blastling.hurt": {
+		"sounds": [
+			"echoing_void:blastling/hurt1",
+			"echoing_void:blastling/hurt2",
+			"echoing_void:blastling/hurt3",
+			"echoing_void:blastling/hurt4"
+		]
+	},
+	"blastling.death": {
+		"sounds": [
+			"echoing_void:blastling/death1",
+			"echoing_void:blastling/death2",
+			"echoing_void:blastling/death3"
+		]
+	},
+	"blastling.stun": {
+		"sounds": [
+			"echoing_void:blastling/stun1",
+			"echoing_void:blastling/stun2",
+			"echoing_void:blastling/stun3"
+		]
+	},
+	"blastling.ranged_attack_animation": {
+		"sounds": [
+			"echoing_void:blastling/ranged_attack_animation1",
+			"echoing_void:blastling/ranged_attack_animation2",
+			"echoing_void:blastling/ranged_attack_animation3",
+			"echoing_void:blastling/ranged_attack_animation4"
+		]
+	},
+	"blastling.ranged_attack_impact": {
+		"sounds": [
+			"echoing_void:blastling/ranged_attack_impact1",
+			"echoing_void:blastling/ranged_attack_impact2",
+			"echoing_void:blastling/ranged_attack_impact3",
+			"echoing_void:blastling/ranged_attack_impact4"
+		]
+	},
+	"blastling.range_attack_proj": {
+		"sounds": [
+			"echoing_void:blastling/range_attack_proj_1",
+			"echoing_void:blastling/range_attack_proj_2",
+			"echoing_void:blastling/range_attack_proj_3",
+			"echoing_void:blastling/range_attack_proj_4"
+		]
 	}
 }

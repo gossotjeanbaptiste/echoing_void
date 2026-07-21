@@ -10,7 +10,7 @@ import name.modid.entity.WatchlingEntity;
 
 public class WatchlingRenderer extends HumanoidMobRenderer<WatchlingEntity, WatchlingRenderState, WatchlingModel> {
 	public static final ModelLayerLocation LAYER = new ModelLayerLocation(EchoingVoid.id("watchling"), "main");
-	private static final Identifier TEXTURE = EchoingVoid.id("textures/mob/watchling.png");
+	private static final Identifier TEXTURE = EchoingVoid.id("textures/mob/watchling/watchling.png");
 
 	public WatchlingRenderer(EntityRendererProvider.Context context) {
 		super(context, new WatchlingModel(context.bakeLayer(LAYER)), 0.5F);
