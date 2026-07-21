@@ -16,6 +16,7 @@ public class BlastlingRenderer extends HumanoidMobRenderer<BlastlingEntity, Blas
 
 	public BlastlingRenderer(EntityRendererProvider.Context context) {
 		super(context, new BlastlingModel(context.bakeLayer(LAYER)), 0.5F);
+		this.addLayer(new BlastlingEyesLayer(this));
 		this.addLayer(new BlastlingFlameLayer(this, new BlastlingFlameModel(context.bakeLayer(FLAME_LAYER))));
 	}
 
