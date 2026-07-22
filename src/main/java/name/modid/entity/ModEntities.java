@@ -1,7 +1,5 @@
 package name.modid.entity;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
 
@@ -51,8 +49,11 @@ public class ModEntities {
 	public static void init() {
 		FabricDefaultAttributeRegistry.register(WATCHLING, WatchlingEntity.createAttributes());
 		FabricDefaultAttributeRegistry.register(BLASTLING, BlastlingEntity.createAttributes());
-		// Natural spawns only in the End, same footing as Endermen (bumped well above vanilla rates).
-		BiomeModifications.addSpawn(BiomeSelectors.foundInTheEnd(), MobCategory.MONSTER, WATCHLING, 160, 1, 5);
-		BiomeModifications.addSpawn(BiomeSelectors.foundInTheEnd(), MobCategory.MONSTER, BLASTLING, 120, 1, 3);
+		// Natural spawns are handled entirely by WatchlingSpawner/BlastlingSpawner, not
+		// BiomeModifications.addSpawn - vanilla's NaturalSpawner picks a uniformly random Y between
+		// the world's min height and a column's surface height, which heavily biases spawns towards
+		// low altitude on the End's floating islands (most of that Y range is void under a high
+		// island). Registering both paths at once was letting that bias bleed through alongside the
+		// unbiased custom spawner.
 	}
 }
