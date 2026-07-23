@@ -14,6 +14,7 @@ import name.modid.entity.BlastlingSpawner;
 import name.modid.entity.ModEntities;
 import name.modid.entity.WatchlingSpawner;
 import name.modid.item.ModItems;
+import name.modid.item.ModPotions;
 import name.modid.loot.ModLootTables;
 import name.modid.sound.ModSounds;
 import name.modid.worldgen.ModStructureProcessors;
@@ -36,6 +37,7 @@ public class EchoingVoid implements ModInitializer {
 
 		ModSounds.init();
 		ModMobEffects.init();
+		ModPotions.init();
 		ModItems.init();
 		ModBlocks.init();
 		ModBlockEntities.init();

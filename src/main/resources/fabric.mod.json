@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"name.modid.client.EchoingVoidClient"
+		],
+		"jei_mod_plugin": [
+			"name.modid.client.compat.EchoingVoidJeiPlugin"
 		]
 	},
 	"mixins": [
