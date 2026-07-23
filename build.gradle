@@ -39,6 +39,11 @@ dependencies {
 
 	// Nuit (formerly FabricSkyboxes) - client-side custom sky rendering
 	implementation "maven.modrinth:nuit:${project.nuit_version}"
+
+	// JEI - compile-time only, so the mod builds/runs fine without it installed.
+	// Referenced directly from run/mods since no Maven build for this bleeding-edge
+	// Minecraft version is published yet; swap for a proper Maven coordinate once one exists.
+	compileOnly files("run/mods/jei-26.1.2-fabric-29.16.0.48.jar")
 }
 
 processResources {
