@@ -6,7 +6,7 @@
 	"effect.echoing_void.void_poisoned": "Void Poisoned",
 	"enchantment.echoing_void.void_strike": "Void Strike",
 	"tag.item.echoing_void.enchantable.void_strike": "Void Strike Enchantable",
-	"item.echoing_void.void_poisoned_potion": "Void Poisoned Potion",
+	"item.echoing_void.void_poisoned_potion.effect.void_poisoned": "Potion of Void Poisoned",
 	"item.echoing_void.void_poisoned_splash_potion.effect.void_poisoned": "Splash Potion of Void Poisoned",
 	"item.echoing_void.void_poisoned_lingering_potion.effect.void_poisoned": "Lingering Potion of Void Poisoned",
 	"item.echoing_void.watchling_spawn_egg": "Watchling Spawn Egg",

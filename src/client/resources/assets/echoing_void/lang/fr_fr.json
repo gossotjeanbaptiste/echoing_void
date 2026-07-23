@@ -6,7 +6,7 @@
 	"effect.echoing_void.void_poisoned": "Néantisation",
 	"enchantment.echoing_void.void_strike": "Frappe du Vide",
 	"tag.item.echoing_void.enchantable.void_strike": "Enchantable Frappe du Vide",
-	"item.echoing_void.void_poisoned_potion": "Potion de Néantisation",
+	"item.echoing_void.void_poisoned_potion.effect.void_poisoned": "Potion de Néantisation",
 	"item.echoing_void.void_poisoned_splash_potion.effect.void_poisoned": "Potion de Néantisation jetable",
 	"item.echoing_void.void_poisoned_lingering_potion.effect.void_poisoned": "Potion de Néantisation persistante",
 	"item.echoing_void.watchling_spawn_egg": "Œuf d'invocation de Scrutature",
