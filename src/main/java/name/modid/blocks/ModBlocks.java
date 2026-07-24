@@ -31,7 +31,8 @@ public class ModBlocks {
 	// netherite pickaxe or better - anything weaker still mines them, just at bare-hand speed,
 	// which against this much hardness takes a very long time and drops nothing.
 	public static final Block ENDERITE_DEBRIS = register("enderite_debris",
-		properties -> new Block(properties.strength(40.0f, 1200.0f).requiresCorrectToolForDrops()));
+		properties -> new Block(properties.strength(40.0f, 1200.0f).requiresCorrectToolForDrops()),
+		Rarity.RARE);
 	public static final Block ENDERITE_BLOCK = register("enderite_block",
 		properties -> new Block(properties.strength(60.0f, 1600.0f).requiresCorrectToolForDrops()));
 

@@ -86,6 +86,38 @@
 				},
 				{
 					"type": "minecraft:item",
+					"functions": [
+						{
+							"add": false,
+							"count": {
+								"type": "minecraft:uniform",
+								"max": 2.0,
+								"min": 1.0
+							},
+							"function": "minecraft:set_count"
+						}
+					],
+					"name": "echoing_void:enderite_scrap",
+					"weight": 3
+				},
+				{
+					"type": "minecraft:item",
+					"functions": [
+						{
+							"add": false,
+							"count": {
+								"type": "minecraft:uniform",
+								"max": 2.0,
+								"min": 1.0
+							},
+							"function": "minecraft:set_count"
+						}
+					],
+					"name": "echoing_void:enderite_debris",
+					"weight": 2
+				},
+				{
+					"type": "minecraft:item",
 					"name": "minecraft:saddle",
 					"weight": 3
 				},
@@ -366,7 +398,7 @@
 				{
 					"type": "minecraft:item",
 					"name": "echoing_void:enderite_upgrade_smithing_template",
-					"weight": 1
+					"weight": 2
 				}
 			],
 			"rolls": 1.0
