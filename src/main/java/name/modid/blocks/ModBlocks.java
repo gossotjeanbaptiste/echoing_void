@@ -26,6 +26,15 @@ public class ModBlocks {
 		properties -> new EndBrewingStandBlock(properties.mapColor(MapColor.METAL).strength(0.5F).lightLevel(state -> 1).noOcclusion()),
 		Rarity.RARE);
 
+	// Beyond-netherite ore/storage pair. Harder and more blast resistant than their netherite
+	// equivalents, and gated (via the block tags in data/minecraft/tags/block) to require a
+	// netherite pickaxe or better - anything weaker still mines them, just at bare-hand speed,
+	// which against this much hardness takes a very long time and drops nothing.
+	public static final Block ENDERITE_DEBRIS = register("enderite_debris",
+		properties -> new Block(properties.strength(40.0f, 1200.0f).requiresCorrectToolForDrops()));
+	public static final Block ENDERITE_BLOCK = register("enderite_block",
+		properties -> new Block(properties.strength(60.0f, 1600.0f).requiresCorrectToolForDrops()));
+
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory) {
 		return register(name, factory, Rarity.COMMON);
 	}
@@ -43,8 +52,13 @@ public class ModBlocks {
 
 	public static void init() {
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS)
-			.register(output -> output.accept(VOID_STONE));
+			.register(output -> {
+				output.accept(VOID_STONE);
+				output.accept(ENDERITE_BLOCK);
+			});
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
 			.register(output -> output.accept(END_BREWING_STAND));
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS)
+			.register(output -> output.accept(ENDERITE_DEBRIS));
 	}
 }
