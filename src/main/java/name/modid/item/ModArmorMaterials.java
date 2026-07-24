@@ -15,7 +15,7 @@ public class ModArmorMaterials {
 	// Beyond-netherite armor. Netherite's own material is durability 37, defense
 	// {boots 3, leggings 6, chestplate 8, helmet 3}, enchantmentValue 15, toughness 3.0F,
 	// knockbackResistance 0.1F - every figure here is bumped past that, same as
-	// ModToolMaterials.VOID_TOUCHED is bumped past netherite's tool material.
+	// ModToolMaterials.ENDERITE is bumped past netherite's tool material.
 	public static final ArmorMaterial ENDERITE = new ArmorMaterial(
 		48,
 		Map.of(
@@ -27,6 +27,6 @@ public class ModArmorMaterials {
 		SoundEvents.ARMOR_EQUIP_NETHERITE,
 		4.0F,
 		0.15F,
-		ModItemTags.VOID_TOUCHED_REPAIR,
+		ModItemTags.ENDERITE_REPAIR,
 		ResourceKey.create(EquipmentAssets.ROOT_ID, EchoingVoid.id("enderite")));
 }

@@ -3,9 +3,9 @@
 	"id": "echoing_void",
 	"version": "${version}",
 	"name": "Echoing Void",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A Fabric mod that bring the Minecraft Dungeons Echoing Void ambiance to Minecraft.",
 	"authors": [
-		"Me!"
+		"JustWireless"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

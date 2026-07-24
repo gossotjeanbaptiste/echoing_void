@@ -29,6 +29,25 @@ loom {
 	}
 }
 
+// JEI - compile-time only, so the mod builds/runs fine without it installed at runtime. The jar
+// itself is referenced directly from run/mods since no Maven build for this bleeding-edge
+// Minecraft version is published yet (swap for a proper Maven coordinate once one exists), which
+// means it's a real file on disk rather than a resolvable coordinate - it won't survive a fresh
+// clone or a wiped run/ folder. Treat it as truly optional: when the jar isn't there, skip the
+// dependency AND exclude the JEI compat sources from compilation, rather than failing the build.
+def jeiJar = file("run/mods/jei-26.1.2-fabric-29.5.0.28.jar")
+def jeiAvailable = jeiJar.exists()
+
+sourceSets {
+	client {
+		java {
+			if (!jeiAvailable) {
+				exclude "name/modid/client/compat/**"
+			}
+		}
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -40,10 +59,9 @@ dependencies {
 	// Nuit (formerly FabricSkyboxes) - client-side custom sky rendering
 	implementation "maven.modrinth:nuit:${project.nuit_version}"
 
-	// JEI - compile-time only, so the mod builds/runs fine without it installed.
-	// Referenced directly from run/mods since no Maven build for this bleeding-edge
-	// Minecraft version is published yet; swap for a proper Maven coordinate once one exists.
-	compileOnly files("run/mods/jei-26.1.2-fabric-29.5.0.28.jar")
+	if (jeiAvailable) {
+		compileOnly files(jeiJar)
+	}
 }
 
 processResources {

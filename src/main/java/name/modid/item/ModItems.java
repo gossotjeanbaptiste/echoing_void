@@ -68,13 +68,13 @@ public class ModItems {
 		properties -> new Item(properties.fireResistant().rarity(Rarity.RARE)));
 
 	// Unique weapons from Minecraft Dungeons' Echoing Void DLC. Repaired on an anvil with an
-	// enderite ingot, same as the rest of the void-touched gear below. Both carry an innate Void
+	// enderite ingot, same as the rest of the enderite gear below. Both carry an innate Void
 	// Strike I - GrindstoneMenuMixin re-applies it after grinding since it isn't a curse.
 	public static final Item THE_BEGINNING_OF_THE_END = register("the_beginning_of_the_end",
 		properties -> new Item(properties
-			.sword(ModToolMaterials.VOID_TOUCHED, 3.0F, -1.6F)
+			.sword(ModToolMaterials.ENDERITE, 3.0F, -1.6F)
 			.rarity(Rarity.EPIC)
-			.repairable(ModItemTags.VOID_TOUCHED_REPAIR)
+			.repairable(ModItemTags.ENDERITE_REPAIR)
 			.delayedComponent(DataComponents.ENCHANTMENTS, ModItems::innateVoidStrike)));
 
 	public static final Item CALL_OF_THE_VOID = register("call_of_the_void",
@@ -82,29 +82,29 @@ public class ModItems {
 			.durability(900)
 			.enchantable(15)
 			.rarity(Rarity.EPIC)
-			.repairable(ModItemTags.VOID_TOUCHED_REPAIR)
+			.repairable(ModItemTags.ENDERITE_REPAIR)
 			.delayedComponent(DataComponents.ENCHANTMENTS, ModItems::innateVoidStrike)));
 
 	// Enderite tool/weapon/armor set - all smithing-table upgrades from their netherite
 	// equivalent (see data/echoing_void/recipe/enderite_*_smithing.json), using an Enderite
 	// Upgrade Smithing Template + an enderite ingot. Base attack numbers are kept identical to
 	// their netherite counterparts (see the real netherite_* registrations for those figures);
-	// the improvement over netherite comes entirely from VOID_TOUCHED/ArmorMaterials.ENDERITE
+	// the improvement over netherite comes entirely from ModToolMaterials.ENDERITE/ArmorMaterials.ENDERITE
 	// (more durability, more damage/defense, better enchantability), same as how
 	// THE_BEGINNING_OF_THE_END only swaps material rather than reinventing sword numbers.
 	public static final Item ENDERITE_PICKAXE = register("enderite_pickaxe",
-		properties -> new Item(properties.pickaxe(ModToolMaterials.VOID_TOUCHED, 1.0F, -2.8F).fireResistant()));
+		properties -> new Item(properties.pickaxe(ModToolMaterials.ENDERITE, 1.0F, -2.8F).fireResistant()));
 	public static final Item ENDERITE_AXE = register("enderite_axe",
-		properties -> new Item(properties.axe(ModToolMaterials.VOID_TOUCHED, 5.0F, -3.0F).fireResistant()));
+		properties -> new Item(properties.axe(ModToolMaterials.ENDERITE, 5.0F, -3.0F).fireResistant()));
 	public static final Item ENDERITE_SHOVEL = register("enderite_shovel",
-		properties -> new Item(properties.shovel(ModToolMaterials.VOID_TOUCHED, 1.5F, -3.0F).fireResistant()));
+		properties -> new Item(properties.shovel(ModToolMaterials.ENDERITE, 1.5F, -3.0F).fireResistant()));
 	public static final Item ENDERITE_HOE = register("enderite_hoe",
-		properties -> new Item(properties.hoe(ModToolMaterials.VOID_TOUCHED, 0.0F, -4.0F).fireResistant()));
+		properties -> new Item(properties.hoe(ModToolMaterials.ENDERITE, 0.0F, -4.0F).fireResistant()));
 	// The generic spear tier (netherite_spear's own 9 tuning figures, untouched - only the
 	// material changes) - distinct from the two named legendary weapons above.
 	public static final Item ENDERITE_SPEAR = register("enderite_spear",
 		properties -> new Item(properties
-			.spear(ModToolMaterials.VOID_TOUCHED, 1.15F, 1.2F, 0.4F, 2.5F, 9.0F, 5.5F, 5.1F, 8.75F, 4.6F)
+			.spear(ModToolMaterials.ENDERITE, 1.15F, 1.2F, 0.4F, 2.5F, 9.0F, 5.5F, 5.1F, 8.75F, 4.6F)
 			.fireResistant()));
 
 	public static final Item ENDERITE_HELMET = register("enderite_helmet",
