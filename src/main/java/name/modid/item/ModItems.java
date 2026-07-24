@@ -64,7 +64,7 @@ public class ModItems {
 
 	public static final Item CALL_OF_THE_VOID = register("call_of_the_void",
 		properties -> new CallOfTheVoidBowItem(properties
-			.durability(600)
+			.durability(900)
 			.enchantable(15)
 			.rarity(Rarity.EPIC)
 			.delayedComponent(DataComponents.ENCHANTMENTS, ModItems::innateVoidStrike)));
