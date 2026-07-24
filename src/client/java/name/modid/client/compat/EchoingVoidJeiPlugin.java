@@ -86,8 +86,10 @@ public class EchoingVoidJeiPlugin implements IModPlugin {
 		splashPotion.set(DataComponents.POTION_CONTENTS, new PotionContents(ModPotions.VOID_POISONED));
 		ItemStack lingeringPotion = new ItemStack(Items.LINGERING_POTION);
 		lingeringPotion.set(DataComponents.POTION_CONTENTS, new PotionContents(ModPotions.VOID_POISONED));
+		ItemStack tippedArrow = new ItemStack(Items.TIPPED_ARROW);
+		tippedArrow.set(DataComponents.POTION_CONTENTS, new PotionContents(ModPotions.VOID_POISONED));
 
 		jeiRuntime.getIngredientManager()
-			.removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, List.of(potion, splashPotion, lingeringPotion));
+			.removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, List.of(potion, splashPotion, lingeringPotion, tippedArrow));
 	}
 }
