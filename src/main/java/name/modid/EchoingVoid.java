@@ -40,6 +40,7 @@ public class EchoingVoid implements ModInitializer {
 		ModPotions.init();
 		ModItems.init();
 		ModBlocks.init();
+		ModCreativeModeTabs.init();
 		ModBlockEntities.init();
 		ModStructureProcessors.init();
 		ModLootTables.init();
