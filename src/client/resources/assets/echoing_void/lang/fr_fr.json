@@ -11,5 +11,7 @@
 	"item.echoing_void.void_poisoned_lingering_potion.effect.void_poisoned": "Potion de Néantisation persistante",
 	"item.echoing_void.watchling_spawn_egg": "Œuf d'invocation de Scrutature",
 	"item.echoing_void.blastling_spawn_egg": "Œuf d'invocation d'Explosature",
+	"item.echoing_void.the_beginning_of_the_end": "Le Début de la Fin",
+	"item.echoing_void.call_of_the_void": "L'Appel du Vide",
 	"container.echoing_void.end_brewing_stand": "Alambic de l'End"
 }

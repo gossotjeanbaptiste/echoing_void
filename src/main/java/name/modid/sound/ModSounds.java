@@ -28,6 +28,20 @@ public class ModSounds {
 	public static final SoundEvent BLASTLING_RANGED_ATTACK_IMPACT = register("blastling.ranged_attack_impact");
 	public static final SoundEvent BLASTLING_RANGE_ATTACK_PROJ = register("blastling.range_attack_proj");
 
+	public static final SoundEvent THE_BEGINNING_OF_THE_END_ATTACK = register("the_beginning_of_the_end.attack");
+	public static final SoundEvent THE_BEGINNING_OF_THE_END_COMBO = register("the_beginning_of_the_end.combo");
+	public static final SoundEvent THE_BEGINNING_OF_THE_END_EQUIP = register("the_beginning_of_the_end.equip");
+	public static final SoundEvent THE_BEGINNING_OF_THE_END_PICK_UP = register("the_beginning_of_the_end.pick_up");
+	public static final SoundEvent THE_BEGINNING_OF_THE_END_DROP = register("the_beginning_of_the_end.drop");
+
+	public static final SoundEvent CALL_OF_THE_VOID_SHOT = register("call_of_the_void.shot");
+	public static final SoundEvent CALL_OF_THE_VOID_CHARGED_SHOT = register("call_of_the_void.charged_shot");
+	public static final SoundEvent CALL_OF_THE_VOID_IMPACT = register("call_of_the_void.impact");
+	public static final SoundEvent CALL_OF_THE_VOID_CHARGE_IMPACT = register("call_of_the_void.charge_impact");
+	public static final SoundEvent CALL_OF_THE_VOID_EQUIP = register("call_of_the_void.equip");
+	public static final SoundEvent CALL_OF_THE_VOID_PICK_UP = register("call_of_the_void.pick_up");
+	public static final SoundEvent CALL_OF_THE_VOID_DROP = register("call_of_the_void.drop");
+
 	private static SoundEvent register(String name) {
 		ResourceKey<SoundEvent> key = ResourceKey.create(Registries.SOUND_EVENT, EchoingVoid.id(name));
 		return Registry.register(BuiltInRegistries.SOUND_EVENT, key, SoundEvent.createVariableRangeEvent(EchoingVoid.id(name)));

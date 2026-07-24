@@ -5,7 +5,12 @@
 	"mixins": [
 		"LivingEntityMixin",
 		"BrewingStandIngredientsSlotMixin",
-		"EndCityPiecesMixin"
+		"EndCityPiecesMixin",
+		"GrindstoneMenuMixin",
+		"PlayerMixin",
+		"AbstractArrowMixin",
+		"InventoryMixin",
+		"ItemEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -121,5 +121,77 @@
 			"echoing_void:blastling/range_attack_proj_3",
 			"echoing_void:blastling/range_attack_proj_4"
 		]
+	},
+	"the_beginning_of_the_end.attack": {
+		"sounds": [
+			"echoing_void:the_beginning_of_the_end/attack1",
+			"echoing_void:the_beginning_of_the_end/attack2",
+			"echoing_void:the_beginning_of_the_end/attack3"
+		]
+	},
+	"the_beginning_of_the_end.combo": {
+		"sounds": [
+			"echoing_void:the_beginning_of_the_end/combo1",
+			"echoing_void:the_beginning_of_the_end/combo2",
+			"echoing_void:the_beginning_of_the_end/combo3"
+		]
+	},
+	"the_beginning_of_the_end.equip": {
+		"sounds": [
+			"echoing_void:the_beginning_of_the_end/equip"
+		]
+	},
+	"the_beginning_of_the_end.pick_up": {
+		"sounds": [
+			"echoing_void:the_beginning_of_the_end/pick_up"
+		]
+	},
+	"the_beginning_of_the_end.drop": {
+		"sounds": [
+			"echoing_void:the_beginning_of_the_end/drop"
+		]
+	},
+	"call_of_the_void.shot": {
+		"sounds": [
+			"echoing_void:call_of_the_void/shot1",
+			"echoing_void:call_of_the_void/shot2",
+			"echoing_void:call_of_the_void/shot3"
+		]
+	},
+	"call_of_the_void.charged_shot": {
+		"sounds": [
+			"echoing_void:call_of_the_void/charged_shot1",
+			"echoing_void:call_of_the_void/charged_shot2",
+			"echoing_void:call_of_the_void/charged_shot3"
+		]
+	},
+	"call_of_the_void.impact": {
+		"sounds": [
+			"echoing_void:call_of_the_void/impact1",
+			"echoing_void:call_of_the_void/impact2",
+			"echoing_void:call_of_the_void/impact3"
+		]
+	},
+	"call_of_the_void.charge_impact": {
+		"sounds": [
+			"echoing_void:call_of_the_void/charge_impact1",
+			"echoing_void:call_of_the_void/charge_impact2",
+			"echoing_void:call_of_the_void/charge_impact3"
+		]
+	},
+	"call_of_the_void.equip": {
+		"sounds": [
+			"echoing_void:call_of_the_void/equip"
+		]
+	},
+	"call_of_the_void.pick_up": {
+		"sounds": [
+			"echoing_void:call_of_the_void/pick_up"
+		]
+	},
+	"call_of_the_void.drop": {
+		"sounds": [
+			"echoing_void:call_of_the_void/drop"
+		]
 	}
 }
