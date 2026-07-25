@@ -171,7 +171,7 @@ Ranged-only monster, no melee. 16 HP, 0.3 movement speed, 0 armor.
 Registered via Fabric API's `BiomeModifications` (not raw biome-JSON overrides) at the `UNDERGROUND_DECORATION` generation step — the same step real `ore_ancient_debris_*` uses in this version, confirmed by inspecting the actual game jar rather than assumed.
 
 - **Biomes**: `end_highlands`, `end_midlands`, `end_barrens`, `small_end_islands` — the *outer* End islands only, not the central main island.
-- **Two veins per chunk**, mirroring ancient debris exactly: `enderite_debris_large` (vein size 3) and `enderite_debris_small` (vein size 2), each a `minecraft:scattered_ore` feature targeting `minecraft:end_stone` → `echoing_void:enderite_debris`, `discard_chance_on_air_exposure: 1.0` (never exposes a floating ore block at an island edge).
+- **Two veins per chunk**, mirroring ancient debris in shape: `enderite_debris_large` (vein size 3) and `enderite_debris_small` (vein size 2), each a `minecraft:scattered_ore` feature targeting `minecraft:end_stone` → `echoing_void:enderite_debris`. Unlike ancient debris, `discard_chance_on_air_exposure` is `0.0` (never discarded), so a vein that happens to generate near a thin island's surface or an edge stays visible/exposed instead of vanishing - the intent is that it's occasionally spottable above ground, not perpetually buried.
 - **Height**: `minecraft:uniform` distribution between Y=16 and Y=65 (flat probability across that band — no bias toward center or bottom, matching the request that spawn rate be roughly even regardless of layer). This differs from real `ore_ancient_debris_large`, which uses a center-biased `trapezoid`.
 
 ### End City Brewing Stand Swap
