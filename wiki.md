@@ -12,14 +12,15 @@ The mod is themed around Minecraft Dungeons' *Echoing Void* DLC, transplanted in
 2. [Items](#items)
 3. [Mob Effect: Void Poisoned](#mob-effect-void-poisoned)
 4. [Enchantment: Void Strike](#enchantment-void-strike)
-5. [Entities](#entities)
-6. [Worldgen & Structures](#worldgen--structures)
-7. [Progression Chain Summary](#progression-chain-summary)
-8. [Loot Tables](#loot-tables)
-9. [Tags Reference](#tags-reference)
-10. [Client-Side Features](#client-side-features)
-11. [Mixins Reference](#mixins-reference)
-12. [Known Gaps / WIP Notes](#known-gaps--wip-notes)
+5. [Fluid: Void Liquid](#fluid-void-liquid)
+6. [Entities](#entities)
+7. [Worldgen & Structures](#worldgen--structures)
+8. [Progression Chain Summary](#progression-chain-summary)
+9. [Loot Tables](#loot-tables)
+10. [Tags Reference](#tags-reference)
+11. [Client-Side Features](#client-side-features)
+12. [Mixins Reference](#mixins-reference)
+13. [Known Gaps / WIP Notes](#known-gaps--wip-notes)
 
 ---
 
@@ -31,6 +32,7 @@ The mod is themed around Minecraft Dungeons' *Echoing Void* DLC, transplanted in
 | **End Brewing Stand** (`end_brewing_stand`) | 0.5 | Rarity RARE. A `BrewingStandBlock` subclass with its own block entity; functions as a normal brewing stand plus one exclusive recipe (see below). Naturally replaces any vanilla brewing stand generated inside End City structures. |
 | **Enderite Debris** (`enderite_debris`) | 40.0 / 1200.0 | Rarity RARE. Ore block, generates in the outer End islands. Needs a netherite pickaxe or better (see [Tool Gating](#tool-gating)). |
 | **Block of Enderite** (`enderite_block`) | 60.0 / 1600.0 | Storage block for 9 Enderite Ingots. Needs a netherite pickaxe or better. |
+| **Void Liquid** (`void_liquid`) | 100.0 (fluid) | `LiquidBlock`, no `BlockItem` — bucket-only, like vanilla water/lava. Full behavior in [Fluid: Void Liquid](#fluid-void-liquid). |
 
 ### Tool Gating
 
@@ -40,7 +42,7 @@ Minecraft's post-1.21 tool system determines "correct tool" per block via tags, 
 
 ```
  P
-E B V
+EBV
  P
 ```
 `P` = Ender Pearl, `E` = End Stone, `B` = Brewing Stand, `V` = Void Stone → 1 End Brewing Stand.
@@ -62,9 +64,9 @@ A real `SmithingTemplateItem` (not a generic item) — carries the vanilla-style
 
 - **Obtained**: found rarely in End City chests (see [Loot Tables](#loot-tables)), or duplicated at a crafting table:
   ```
-  N S N
-  V E V
-  N N N
+  NSN
+  VEV
+  NNN
   ```
   `N` = Netherite Ingot, `S` = existing template, `V` = Void Stone, `E` = End Stone → 2 templates (consumes 1 to make 2, net +1 — same mechanic as vanilla's Netherite Upgrade Template duplication).
 
@@ -114,6 +116,10 @@ Both are Epic rarity, carry an innate **Void Strike I** (not a curse — survive
 
 `watchling_spawn_egg` / `blastling_spawn_egg` — real functional spawn eggs (creative/command only, not craftable), same as vanilla.
 
+### Void Liquid Bucket
+
+`void_liquid_bucket` — plain `BucketItem` for Void Liquid, fills/empties like any vanilla fluid bucket (craft-remainder: empty bucket). See [Fluid: Void Liquid](#fluid-void-liquid) for what the liquid itself does.
+
 ---
 
 ## Mob Effect: Void Poisoned
@@ -122,6 +128,8 @@ Harmful effect, color `#9C1FB0`. Ticks 3.0 damage (`damageSources().magic()`) ev
 
 **Immune**: anything in the `echoing_void:immune_to_void_poisoned` entity type tag — vanilla Enderman, Watchling, Blastling (all "of the void", so it doesn't poison itself or its own kind).
 
+**Sources**: brewed [Void Poisoned potions](#void-poisoned-potions), or 3 continuous seconds submerged in [Void Liquid](#fluid-void-liquid).
+
 ---
 
 ## Enchantment: Void Strike
@@ -129,6 +137,20 @@ Harmful effect, color `#9C1FB0`. Ticks 3.0 damage (`damageSources().magic()`) ev
 Data-driven enchantment (`data/echoing_void/enchantment/void_strike.json`), max level 3, mainhand slot only, weight 3, anvil cost 4. Applies a damage multiplier: ×1.33 / ×1.66 / ×2.0 by level. Supported items: anything in `echoing_void:enchantable/void_strike` (weapon + bow + crossbow enchantable tags). Explicitly added to `minecraft:in_enchanting_table` so it can roll at the enchanting table (custom enchantments don't show up there without this tag).
 
 Obtainable: enchanting table/anvil books, or naturally on gear found in End City chests (an enchanted book pool and a weapon pool — diamond sword/axe/spear/bow — both added via `ModLootTables` using Fabric's `LootTableEvents.MODIFY`, stacking additively on top of the datapack-level JSON overrides on `end_city_treasure`).
+
+---
+
+## Fluid: Void Liquid
+
+Dark purple, opaque hazard fluid (`void_liquid` source / `flowing_void_liquid` flowing) — own `VoidLiquidFluid`/`VoidLiquidBlock` pair, registered the same way vanilla registers water/lava (no `BlockItem`, world/bucket-only).
+
+- **Physics**: added to `#minecraft:water` (see [Tags Reference](#tags-reference)) purely to inherit water's swim/slowdown movement, submersion detection, and breath handling for free, rather than reimplementing entity-in-fluid physics from scratch.
+- **Poisoning**: after **3 continuous seconds submerged** (a per-entity tick counter inside `VoidLiquidFluid`), applies [Void Poisoned](#mob-effect-void-poisoned) for the default 260-tick duration. Respects the same `echoing_void:immune_to_void_poisoned` immunity as the potion.
+- **Visuals**: opaque, pre-colored animated still/flow textures (no biome tint, unlike water) plus an overlay texture for submerged blocks — registered client-side via Fabric API's `FluidRenderingRegistry` (vanilla's fluid renderer is otherwise hardcoded to water/lava only). Emits sparse `portal` particles and drips as `dripping_obsidian_tear`.
+- **Bucket**: [`void_liquid_bucket`](#void-liquid-bucket) — fills/empties like any vanilla fluid bucket.
+- **Bottle**: filling a glass bottle from a Void Liquid source yields a **Potion of Void Poisoned**, not a water bottle. Vanilla's `BottleItem` hardcodes "any `#minecraft:water` source → water potion" (which void_liquid would otherwise trigger via the tag above), so `BottleItemMixin` intercepts before that check specifically when the source is Void Liquid.
+- **No self-duplication**: unlike water, `canConvertToSource` always returns false — two adjacent Void Liquid sources never merge to create a third, so it can't be infinitely farmed.
+- **No worldgen source yet** — creative/command-obtainable only for now (same gap as Void Stone, see [Known Gaps](#known-gaps--wip-notes)).
 
 ---
 
@@ -245,6 +267,7 @@ Standard single-item self-drops (with `survives_explosion`) for Void Stone, Ende
 | `minecraft:needs_diamond_tool` | added to | `echoing_void:void_stone`, `echoing_void:enderite_debris`, `echoing_void:enderite_block` |
 | `minecraft:incorrect_for_diamond_tool` | added to | `echoing_void:enderite_debris`, `echoing_void:enderite_block` |
 | `minecraft:mineable/pickaxe` | added to | `echoing_void:void_stone`, `echoing_void:enderite_debris`, `echoing_void:enderite_block` |
+| `minecraft:water` (fluid) | added to | `echoing_void:void_liquid`, `echoing_void:flowing_void_liquid` — for water-like entity physics only, see [Fluid: Void Liquid](#fluid-void-liquid) |
 
 ---
 
@@ -277,6 +300,8 @@ Registered as a JEI plugin (`EchoingVoidJeiPlugin`, environment: client-only). A
 | Mixin | Target | Purpose |
 |---|---|---|
 | `AbstractArrowMixin` | `AbstractArrow` | Plays Call of the Void's impact/charge-impact sound on arrow-hit-entity/block, based on the arrow's charged-shot tag |
+| `AnvilMenuMixin` | `AnvilMenu` | Removes the vanilla 40-level "Too Expensive!" cap entirely (normally bypassed only for creative players); makes Call of the Void ignore enchantment exclusive-set conflicts (e.g. Infinity + Mending) so any combo can be combined onto it |
+| `BottleItemMixin` | `BottleItem` | Redirects glass-bottle filling from a Void Liquid source to a Potion of Void Poisoned instead of vanilla's hardcoded water-bottle result |
 | `BrewingStandIngredientsSlotMixin` | `BrewingStandMenu$IngredientsSlot` | Allows placing an Ender Pearl in the ingredient slot specifically when the container is an `EndBrewingStandBlockEntity` |
 | `EndCityPiecesMixin` | `EndCityPieces$EndCityPiece` | Injects the brewing-stand-swap structure processor into every End City piece |
 | `GrindstoneMenuMixin` | `GrindstoneMenu` | Restores innate Void Strike I on the two legendary weapons after a grind pass (it isn't a curse, so it would otherwise be stripped) |
@@ -292,3 +317,4 @@ Registered as a JEI plugin (`EchoingVoidJeiPlugin`, environment: client-only). A
 ## Known Gaps / WIP Notes
 
 - **Void Stone has no obtain path in survival** (in progress): no crafting recipe, no worldgen feature, no loot table entry beyond dropping itself when broken. It's required as an ingredient for both the End Brewing Stand and the Enderite Upgrade Template recipes, so right now those are effectively creative/command-only until Void Stone gets a source.
+- **Void Liquid has no worldgen placement yet**: the fluid, block, and bucket are fully functional, but there's no lake/pool feature placing it anywhere in the world — currently obtainable only via creative inventory or `/give`.
