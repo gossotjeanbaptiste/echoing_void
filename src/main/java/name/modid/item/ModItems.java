@@ -15,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +34,7 @@ import net.minecraft.world.item.equipment.ArmorType;
 import name.modid.EchoingVoid;
 import name.modid.enchantment.ModEnchantments;
 import name.modid.entity.ModEntities;
+import name.modid.fluid.ModFluids;
 import name.modid.tag.ModItemTags;
 
 public class ModItems {
@@ -151,6 +153,9 @@ public class ModItems {
 	public static final Item BLASTLING_SPAWN_EGG = register("blastling_spawn_egg",
 		properties -> new SpawnEggItem(properties.spawnEgg(ModEntities.BLASTLING)));
 
+	public static final Item VOID_LIQUID_BUCKET = register("void_liquid_bucket",
+		properties -> new BucketItem(ModFluids.VOID_LIQUID, properties.craftRemainder(Items.BUCKET).stacksTo(1)));
+
 	private static Consumable voidPoisonedConsumable() {
 		// No explicit onConsume effect here: PotionContents (attached below) is itself a
 		// ConsumableListener and applies its effects automatically when the item is drunk.
@@ -219,6 +224,7 @@ public class ModItems {
 				output.accept(ENDERITE_AXE);
 				output.accept(ENDERITE_SHOVEL);
 				output.accept(ENDERITE_HOE);
+				output.accept(VOID_LIQUID_BUCKET);
 			});
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
 			.register(output -> {

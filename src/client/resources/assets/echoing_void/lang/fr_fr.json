@@ -4,6 +4,8 @@
 	"block.echoing_void.end_brewing_stand": "Alambic de l'End",
 	"block.echoing_void.enderite_debris": "Débris d'Enderite",
 	"block.echoing_void.enderite_block": "Bloc d'Enderite",
+	"block.echoing_void.void_liquid": "Liquide du Vide",
+	"item.echoing_void.void_liquid_bucket": "Seau de Liquide du Vide",
 	"item.echoing_void.enderite_scrap": "Éclat d'Enderite",
 	"item.echoing_void.enderite_ingot": "Lingot d'Enderite",
 	"item.echoing_void.enderite_pickaxe": "Pioche en Enderite",

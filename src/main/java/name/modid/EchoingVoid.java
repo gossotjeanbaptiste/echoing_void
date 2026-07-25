@@ -13,6 +13,7 @@ import name.modid.effect.ModMobEffects;
 import name.modid.entity.BlastlingSpawner;
 import name.modid.entity.ModEntities;
 import name.modid.entity.WatchlingSpawner;
+import name.modid.fluid.ModFluids;
 import name.modid.item.ModItems;
 import name.modid.item.ModPotions;
 import name.modid.loot.ModLootTables;
@@ -39,6 +40,7 @@ public class EchoingVoid implements ModInitializer {
 		ModSounds.init();
 		ModMobEffects.init();
 		ModPotions.init();
+		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
 		ModCreativeModeTabs.init();

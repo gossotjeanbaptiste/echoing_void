@@ -13,11 +13,15 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import name.modid.EchoingVoid;
 import name.modid.block.EndBrewingStandBlock;
+import name.modid.fluid.ModFluids;
 
 public class ModBlocks {
 	public static final Block VOID_STONE = register("void_stone",
@@ -36,6 +40,10 @@ public class ModBlocks {
 	public static final Block ENDERITE_BLOCK = register("enderite_block",
 		properties -> new Block(properties.strength(60.0f, 1600.0f).requiresCorrectToolForDrops()));
 
+	// Dark purple hazard liquid (see name.modid.fluid.VoidLiquidFluid) - registered like vanilla's
+	// WATER/LAVA blocks: no BlockItem (only collected via the bucket, itself registered in ModItems).
+	public static final Block VOID_LIQUID = registerLiquid("void_liquid", ModFluids.VOID_LIQUID);
+
 	private static Block register(String name, Function<BlockBehaviour.Properties, Block> factory) {
 		return register(name, factory, Rarity.COMMON);
 	}
@@ -49,6 +57,23 @@ public class ModBlocks {
 		Registry.register(BuiltInRegistries.ITEM, itemKey,
 			new BlockItem(registered, new Item.Properties().setId(itemKey).useBlockDescriptionPrefix().rarity(rarity)));
 		return registered;
+	}
+
+	// Mirrors vanilla Blocks.WATER's properties - no BlockItem, since fluid blocks are only ever
+	// obtained through their bucket item.
+	private static Block registerLiquid(String name, FlowingFluid fluid) {
+		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, EchoingVoid.id(name));
+		Block block = new VoidLiquidBlock(fluid, BlockBehaviour.Properties.of()
+			.setId(blockKey)
+			.mapColor(MapColor.COLOR_PURPLE)
+			.replaceable()
+			.noCollision()
+			.strength(100.0F)
+			.pushReaction(PushReaction.DESTROY)
+			.noLootTable()
+			.liquid()
+			.sound(SoundType.EMPTY));
+		return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
 	}
 
 	public static void init() {

@@ -11,7 +11,8 @@
 		"AbstractArrowMixin",
 		"InventoryMixin",
 		"ItemEntityMixin",
-		"AnvilMenuMixin"
+		"AnvilMenuMixin",
+		"BottleItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

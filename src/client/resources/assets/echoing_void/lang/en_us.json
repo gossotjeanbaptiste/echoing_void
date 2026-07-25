@@ -4,6 +4,8 @@
 	"block.echoing_void.end_brewing_stand": "End Brewing Stand",
 	"block.echoing_void.enderite_debris": "Enderite Debris",
 	"block.echoing_void.enderite_block": "Block of Enderite",
+	"block.echoing_void.void_liquid": "Void Liquid",
+	"item.echoing_void.void_liquid_bucket": "Bucket of Void Liquid",
 	"item.echoing_void.enderite_scrap": "Enderite Scrap",
 	"item.echoing_void.enderite_ingot": "Enderite Ingot",
 	"item.echoing_void.enderite_pickaxe": "Enderite Pickaxe",
