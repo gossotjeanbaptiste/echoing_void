@@ -10,7 +10,8 @@
 		"PlayerMixin",
 		"AbstractArrowMixin",
 		"InventoryMixin",
-		"ItemEntityMixin"
+		"ItemEntityMixin",
+		"AnvilMenuMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
