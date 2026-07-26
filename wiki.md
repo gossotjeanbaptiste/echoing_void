@@ -14,7 +14,7 @@ The mod is themed around Minecraft Dungeons' *Echoing Void* DLC, transplanted in
 4. [Enchantment: Void Strike](#enchantment-void-strike)
 5. [Fluid: Void Liquid](#fluid-void-liquid)
 6. [Entities](#entities)
-7. [Worldgen & Structures](#worldgen--structures)
+7. [Worldgen & Structures](#worldgen--structures) (incl. [Void Islands biome](#void-islands-biome))
 8. [Progression Chain Summary](#progression-chain-summary)
 9. [Loot Tables](#loot-tables)
 10. [Tags Reference](#tags-reference)
@@ -28,7 +28,7 @@ The mod is themed around Minecraft Dungeons' *Echoing Void* DLC, transplanted in
 
 | Block | Hardness / Blast Res. | Notes |
 |---|---|---|
-| **Void Stone** (`void_stone`) | 50.0 / 1200.0 | Requires a diamond+ pickaxe. No crafting recipe and no worldgen source yet — see [Known Gaps](#known-gaps--wip-notes). Used as an ingredient in the End Brewing Stand and Enderite Upgrade Template recipes. |
+| **Void Stone** (`void_stone`) | 50.0 / 1200.0 | Requires a diamond+ pickaxe. Naturally obtainable by mining the [Void Islands biome](#void-islands-biome), or crafted (see below). Used as an ingredient in the End Brewing Stand and Enderite Upgrade Template recipes. |
 | **End Brewing Stand** (`end_brewing_stand`) | 0.5 | Rarity RARE. A `BrewingStandBlock` subclass with its own block entity; functions as a normal brewing stand plus one exclusive recipe (see below). Naturally replaces any vanilla brewing stand generated inside End City structures. |
 | **Enderite Debris** (`enderite_debris`) | 40.0 / 1200.0 | Rarity RARE. Ore block, generates in the outer End islands. Needs a netherite pickaxe or better (see [Tool Gating](#tool-gating)). |
 | **Block of Enderite** (`enderite_block`) | 60.0 / 1600.0 | Storage block for 9 Enderite Ingots. Needs a netherite pickaxe or better. |
@@ -37,6 +37,15 @@ The mod is themed around Minecraft Dungeons' *Echoing Void* DLC, transplanted in
 ### Tool Gating
 
 Minecraft's post-1.21 tool system determines "correct tool" per block via tags, not a strict tier ranking. `enderite_debris` / `enderite_block` are added to `minecraft:needs_diamond_tool` (which every `incorrect_for_<tier>_tool` tag up to diamond references transitively) **and** explicitly to `minecraft:incorrect_for_diamond_tool`. Net effect: diamond and everything below can still swing at the block (at bare-hand speed, since `requiresCorrectToolForDrops()` is set) but only a netherite pickaxe (or the enderite material below) is "correct" — full speed and drops.
+
+### Void Stone — crafting recipe
+
+```
+ O 
+CEC
+ O 
+```
+`O` = Obsidian, `C` = Crying Obsidian, `E` = End Stone → 1 Void Stone.
 
 ### End Brewing Stand — recipe to make one
 
@@ -150,7 +159,7 @@ Dark purple, opaque hazard fluid (`void_liquid` source / `flowing_void_liquid` f
 - **Bucket**: [`void_liquid_bucket`](#void-liquid-bucket) — fills/empties like any vanilla fluid bucket.
 - **Bottle**: filling a glass bottle from a Void Liquid source yields a **Potion of Void Poisoned**, not a water bottle. Vanilla's `BottleItem` hardcodes "any `#minecraft:water` source → water potion" (which void_liquid would otherwise trigger via the tag above), so `BottleItemMixin` intercepts before that check specifically when the source is Void Liquid.
 - **No self-duplication**: unlike water, `canConvertToSource` always returns false — two adjacent Void Liquid sources never merge to create a third, so it can't be infinitely farmed.
-- **No worldgen source yet** — creative/command-obtainable only for now (same gap as Void Stone, see [Known Gaps](#known-gaps--wip-notes)).
+- **Worldgen**: small surface pools in every outer End biome (not the central main island) — see [Void Liquid Pools](#void-liquid-pools).
 
 ---
 
@@ -188,11 +197,27 @@ Ranged-only monster, no melee. 16 HP, 0.3 movement speed, 0 armor.
 
 ## Worldgen & Structures
 
+### Void Islands Biome
+
+`echoing_void:void_islands` — a custom End biome made entirely of Void Stone: tight clusters of small floating islands meant for parkour.
+
+- **Registration**: added via Fabric API's `TheEndBiomes.addSmallIslandsBiome(VOID_ISLANDS, 20.0)` (`ModWorldGen`) — the official Fabric API hook for adding custom biomes into `TheEndBiomeSource`'s outer-island slot, weighted against vanilla Small End Islands' own baseline weight of `1.0`. At weight 20 the new biome generates roughly 95% of the time in that slot; vanilla Small End Islands can still rarely appear, which keeps the "Adventuring Time" advancement (requires visiting `minecraft:small_end_islands` specifically) completable. An early draft of this used a hand-written mixin redirecting `TheEndBiomeSource.create(...)` directly (a full, unconditional replacement); it was dropped in favor of this official, weighted API once discovered, since it composes correctly with other mods and doesn't hard-remove the vanilla biome.
+- **Shape** (`VoidIslandFeature`, configured/placed as `echoing_void:void_island` / `void_island_decorated`): the same shrinking-radius-stack algorithm as vanilla's `EndIslandFeature` (the feature behind Small End Islands), scaled down to a ~3-6 block footprint and only 1-2 layers thick, built from Void Stone instead of End Stone. Placement is denser than vanilla's version (`rarity_filter` chance 3 vs. vanilla's 14, count 2-3 vs. 1-2) and uses a tighter height band (Y 60-68 vs. vanilla's 55-70), so neighboring islands end up closer together with smaller vertical steps — favoring parkour-style jumps between them.
+- **Enderite Debris** also generates here (see below), same as the other outer End biomes.
+
+### Void Liquid Pools
+
+Small surface pools of [Void Liquid](#fluid-void-liquid), rimmed with Void Stone.
+
+- **Feature**: `echoing_void:void_liquid_pool`, a vanilla `minecraft:lake` feature (the same feature type behind vanilla's rare surface lava pools) — carves a small bowl and fills it with Void Liquid, using Void Stone as the sealing barrier around it instead of stone.
+- **Placement**: `rarity_filter` chance 40, at the `WORLD_SURFACE_WG` heightmap, generation step `LAKES`.
+- **Biomes**: every *outer* End biome — `end_highlands`, `end_midlands`, `end_barrens`, `small_end_islands`, and `echoing_void:void_islands` — not the central main island (`the_end`).
+
 ### Enderite Debris Ore Generation
 
 Registered via Fabric API's `BiomeModifications` (not raw biome-JSON overrides) at the `UNDERGROUND_DECORATION` generation step — the same step real `ore_ancient_debris_*` uses in this version, confirmed by inspecting the actual game jar rather than assumed.
 
-- **Biomes**: `end_highlands`, `end_midlands`, `end_barrens`, `small_end_islands` — the *outer* End islands only, not the central main island.
+- **Biomes**: `end_highlands`, `end_midlands`, `end_barrens`, `small_end_islands`, `echoing_void:void_islands` — the *outer* End islands only, not the central main island.
 - **Two veins per chunk**, mirroring ancient debris in shape: `enderite_debris_large` (vein size 3) and `enderite_debris_small` (vein size 2), each a `minecraft:scattered_ore` feature targeting `minecraft:end_stone` → `echoing_void:enderite_debris`. Unlike ancient debris, `discard_chance_on_air_exposure` is `0.0` (never discarded), so a vein that happens to generate near a thin island's surface or an edge stays visible/exposed instead of vanishing - the intent is that it's occasionally spottable above ground, not perpetually buried.
 - **Height**: `minecraft:uniform` distribution between Y=16 and Y=65 (flat probability across that band — no bias toward center or bottom, matching the request that spawn rate be roughly even regardless of layer). This differs from real `ore_ancient_debris_large`, which uses a center-biased `trapezoid`.
 
@@ -316,5 +341,4 @@ Registered as a JEI plugin (`EchoingVoidJeiPlugin`, environment: client-only). A
 
 ## Known Gaps / WIP Notes
 
-- **Void Stone has no obtain path in survival** (in progress): no crafting recipe, no worldgen feature, no loot table entry beyond dropping itself when broken. It's required as an ingredient for both the End Brewing Stand and the Enderite Upgrade Template recipes, so right now those are effectively creative/command-only until Void Stone gets a source.
-- **Void Liquid has no worldgen placement yet**: the fluid, block, and bucket are fully functional, but there's no lake/pool feature placing it anywhere in the world — currently obtainable only via creative inventory or `/give`.
+None currently — see git history for in-progress work.

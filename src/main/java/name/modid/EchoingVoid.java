@@ -18,6 +18,7 @@ import name.modid.item.ModItems;
 import name.modid.item.ModPotions;
 import name.modid.loot.ModLootTables;
 import name.modid.sound.ModSounds;
+import name.modid.worldgen.ModFeatures;
 import name.modid.worldgen.ModStructureProcessors;
 import name.modid.worldgen.ModWorldGen;
 
@@ -46,6 +47,7 @@ public class EchoingVoid implements ModInitializer {
 		ModCreativeModeTabs.init();
 		ModBlockEntities.init();
 		ModStructureProcessors.init();
+		ModFeatures.init();
 		ModWorldGen.init();
 		ModLootTables.init();
 		ModEntities.init();
