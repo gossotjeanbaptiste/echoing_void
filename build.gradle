@@ -56,8 +56,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// Nuit (formerly FabricSkyboxes) - client-side custom sky rendering
-	implementation "maven.modrinth:nuit:${project.nuit_version}"
+	// Nuit (formerly FabricSkyboxes) - client-side custom sky rendering, bundled into the jar
+	include implementation("maven.modrinth:nuit:${project.nuit_version}")
 
 	if (jeiAvailable) {
 		compileOnly files(jeiJar)
